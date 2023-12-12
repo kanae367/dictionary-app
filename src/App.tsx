@@ -1,27 +1,51 @@
-import { useState } from 'react'
+import { MouseEventHandler, useState } from 'react'
 import book from './assets/icon_book.svg';
 import arrow from './assets/icon_arrow.svg';
 import moon from './assets/icon_moon.svg';
+import getWord from './getWord.ts';
 import './App.scss'
 import './Main.scss';
+import WordMeaning from './WordMeaning.tsx';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
 
+interface IFormInput{
+  word: string;
+}
+
+interface IWordResult{
+  word: string;
+  phonetic: string;
+  phonetics: {
+    text: string;
+    audio?: string;
+  }[],
+  origin: string;
+  meanings: {
+    partOfSpeech: string;
+    definitions: {
+      definition: string;
+      example?: string;
+      synonyms: string[];
+      antonyms: string[];
+    }[],
+    synonyms: string[];
+    antonyms: string[];
+  }[]
+}
+
 function App() {
+  const {register, handleSubmit} = useForm<IFormInput>();
   const [isDarkTheme, setIsDarkTheme] = useState(darkThemeMq);
-  const data = {
-    title: 'keyboard',
-    phonetic: '/ki:bo:d/',
-    part: 'noun',
-    meaning:[
-      '(etc.) A set of keys used to operate a typewriter, computer etc.',
-      'A component of many instruments including the piano, organ, and harpsichord consisting of usually black and white keys that cause different tones to be produced when struck.',
-      'A device with keys of a musical keyboard, used to control electronic sound-producing devices which may be built into or separate from the keyboard device.'
-    ],
-    synonym: 'hehehe'
+  const [word, setWord] = useState<false | IWordResult>(false);
+
+  const onSubmit:SubmitHandler<IFormInput> = async (data) => {
+    const newWord:IWordResult[] = await getWord(data.word);
+    setWord(newWord[0]);
   }
 
-  const meanings = data.meaning.map(item => <li key={item} className='meaning__item'>{item}</li>)
+  const items = word && word.meanings.map(item => <WordMeaning key={item.definitions[0].definition} meaning={item}/>)
 
   return (
     <>
@@ -46,34 +70,21 @@ function App() {
       </header>
 
       <main className='main'>
-          <div className='search-bar'>
-            <input type="text" className='search-bar__input' placeholder='Search for any word...' />
-            <button type='button' className='search-bar__button' />
-          </div>
+          <form className='search-bar' onSubmit={handleSubmit(onSubmit)}>
+            <input type="text" className='search-bar__input' {...register("word", {required: true, minLength: 2})} placeholder='Search for any word...'/>
+            <button type='submit' className='search-bar__button'/>
+          </form>
           <div className='result'>
             <div className='result__header'>
               <div className='result__header-text'>
-                <h2 className='result__title'>{data.title}</h2>
-                <p className='result__phonetic'>{data.phonetic}</p>
+                <h2 className='result__title'>{word ? word.word : 'Nothing'}</h2>
+                <p className='result__phonetic'>{word ? word.phonetic : 'Nothing'}</p>
               </div>
               <button className='result__button'></button>
             </div>
 
             <div className='result__content'>
-              <div className='result__item'>
-                <div className="result__item-header">
-                  {data.part}
-                </div>
-                <div className='meaning'>
-                  <h4 className="meaning__header">Meaning</h4>
-                  <ul className='meaning__list'>
-                    {meanings}
-                  </ul>
-                </div>
-                <div className='result__footer'>
-                  Synonyms <span className='result__footer-accent'>{data.synonym}</span>
-                </div>
-              </div>
+              {items}
             </div>
           </div>
       </main>
