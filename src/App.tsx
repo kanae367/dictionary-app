@@ -2,6 +2,7 @@ import { MouseEventHandler, useState } from 'react'
 import book from './assets/icon_book.svg';
 import arrow from './assets/icon_arrow.svg';
 import moon from './assets/icon_moon.svg';
+import link from './assets/icon_link.svg';
 import getWord from './getWord.ts';
 import './App.scss'
 import './Main.scss';
@@ -32,13 +33,15 @@ interface IWordResult{
     }[],
     synonyms: string[];
     antonyms: string[];
-  }[]
+  }[];
+  sourceUrls: string[];
 }
 
 function App() {
   const {register, handleSubmit} = useForm<IFormInput>();
   const [isDarkTheme, setIsDarkTheme] = useState(darkThemeMq);
   const [word, setWord] = useState<false | IWordResult>(false);
+  const [font, setFont] = useState<'Inter' | 'Lora' | 'Mono'>('Inter');
 
   const onSubmit:SubmitHandler<IFormInput> = async (data) => {
     const newWord:IWordResult[] = await getWord(data.word);
@@ -46,10 +49,11 @@ function App() {
   }
 
   const items = word && word.meanings.map(item => <WordMeaning key={item.definitions[0].definition} meaning={item}/>)
+  const sources = word && word.sourceUrls.map(item => <a key={item} href={item} className='result__sources-link'><span className='underline'>{item}</span><img className='result__sources-image' src={link}/></a>)
 
   return (
     <>
-      <header className='header'>
+      <header className={`header ${font}`}>
         <img className='header__icon' src={book} alt="book icon"/>
         <div className='header__controls'>
           <div className='fonts-select'>
@@ -69,7 +73,7 @@ function App() {
         </div>
       </header>
 
-      <main className='main'>
+      <main className={`main ${font}`}>
           <form className='search-bar' onSubmit={handleSubmit(onSubmit)}>
             <input type="text" className='search-bar__input' {...register("word", {required: true, minLength: 2})} placeholder='Search for any word...'/>
             <button type='submit' className='search-bar__button'/>
@@ -85,6 +89,13 @@ function App() {
 
             <div className='result__content'>
               {items}
+            </div>
+
+            <div className='result__sources'>
+              <h6 className='result__sources-title'>Source</h6>
+              <div className='result__sources-links'>
+                {sources}
+              </div>
             </div>
           </div>
       </main>

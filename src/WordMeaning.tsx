@@ -13,7 +13,7 @@ const WordMeaning = ({meaning}:{
     meaning:IMeaning
 }) => {
 
-    const listItems = meaning.definitions.map(item => <li key={item.definition} className='meaning__item'>{item.definition}</li>)
+    const listItems = meaning.definitions.map(item => <li key={item.definition} className='meaning__item'>{item.definition}{item.example && <span className="meaning__item-example">{item.example}</span>}</li>)
 
     return(
         <div className='result__item'>
