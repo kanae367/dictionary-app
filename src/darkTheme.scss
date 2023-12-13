@@ -1,0 +1,72 @@
+//transitions
+
+.app-wrapper{
+    transition: .5s background-color;
+
+    .fonts-select{
+        transition: color .5s;
+    }
+
+    .search-bar__input{
+        transition: .5s background-color, .5s color;
+    }
+
+    .result__header{
+        transition: color .5s;
+    }
+
+    .result__item-header{
+        transition: color .5s;
+    }
+
+    .meaning__list{
+        transition: color .5s;
+    }
+
+    .result__sources-link {
+        transition: color .5s;
+    }
+
+    .underline {
+        &::after {
+            transition: background-color .5s;
+        }
+    }
+}
+
+//theme
+
+.dark-theme{
+    background-color: var(--dark-black);
+
+    .fonts-select {
+        color: white;
+    }
+
+    .search-bar__input{
+        background-color: var(--black);
+        color: white;
+    }
+
+    .result__header{
+        color: white;
+    }
+
+    .result__item-header{
+        color: white;
+    }
+
+    .meaning__list{
+        color: white;
+    }
+
+    .result__sources-link{
+        color: white;
+    }
+
+    .underline{
+        &::after{
+            background-color: white;
+        }
+    }
+}
