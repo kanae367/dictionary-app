@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import book from './assets/icon_book.svg';
-import arrow from './assets/icon_arrow.svg';
 import moon from './assets/icon_moon.svg';
 import link from './assets/icon_link.svg';
 import getWord from './getWord.ts';
 import WordMeaning from './WordMeaning.tsx';
+import Select from './select/Select.tsx';
 import './darkTheme.scss';
 import './App.scss'
 import './Main.scss';
@@ -63,12 +63,14 @@ function App() {
         <header className='header'>
           <img className='header__icon' src={book} alt="book icon"/>
           <div className='header__controls'>
-            <div className='fonts-select'>
-              <span className='fonts-select__text'>
-                Sans Serif
-              </span>
-              <img className='fonts-select__icon' src={arrow} alt="arrow icon" />
-            </div>
+            <Select 
+              setFont={setFont}
+              options={[
+                'Inter',
+                'Lora',
+                'Mono'
+              ]}
+              currentFont={font}/>
 
             <div className='theme-select'>
               <label className="theme-switch">

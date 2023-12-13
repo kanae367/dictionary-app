@@ -32,6 +32,10 @@
             transition: background-color .5s;
         }
     }
+
+    .select{
+        transition: background-color .5s, box-shadow .5s;
+    }
 }
 
 //theme
@@ -67,6 +71,15 @@
     .underline{
         &::after{
             background-color: white;
+        }
+    }
+
+    .select{
+        background-color: var(--black);
+        box-shadow: 0 5px 30px var(--purple);
+        
+        &__button{
+            color: white;
         }
     }
 }

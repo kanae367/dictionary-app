@@ -15,6 +15,7 @@
         background-color: var(--dark-white);
         border: none;
         border-radius: 16px;
+        color: var(--light-black);
         font-size: 16px;
         
         @media screen and (min-width: 768px) {
@@ -54,6 +55,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        color: var(--light-black);
         
         &-text{
             display: flex;
@@ -118,6 +120,7 @@
     gap: 16px;
     align-items: center;
     font-size: var(--body-medium-size);
+    color: var(--light-black);
     font-style: italic;
     font-weight: bold;
     width: 100%;
@@ -153,6 +156,7 @@
         flex-direction: column;
         line-height: var(--body-medium-line);
         gap: 13px;
+        color: var(--light-black);
         margin-bottom: 24px;
         font-size: var(--body-small-size);
 
@@ -241,7 +245,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 8px;
-    color: var(--black);
+    color: var(--light-black);
     font-size: var(--body-small-size);
     line-height: var(--body-small-size);
     text-decoration: none;

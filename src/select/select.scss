@@ -1,0 +1,36 @@
+.select{
+    position: absolute;
+    top: calc(100% + 11px);
+    z-index: 5;
+    right: 0;
+    width: 183px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    background-color: white;
+    box-shadow: 0 5px 30px rgba($color: #000000, $alpha: .1);
+    border-radius: 16px;
+
+    &__button{
+        width: 100%;
+        text-align: left;
+        padding-left: 24px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        background-color: transparent;
+        border: none;
+        color: var(--light-black);
+        transition: .5s color;
+        font-weight: bold;
+        font-size: var(--body-small-size);
+        line-height: var(--body-medium-line);
+    
+        @media screen and (min-width: 768px) {
+            font-size: var(--body-medium-size);
+        }
+
+        &:hover{
+            color: var(--purple);
+            cursor: pointer;
+        }
+    }
+}
