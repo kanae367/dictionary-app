@@ -1,0 +1,38 @@
+.not-found{
+    margin-top: 50px;
+
+    @media screen and (min-width: 768px) {
+        margin-top: 132px;
+    }
+
+    &__header{
+        text-align: center;
+    }
+
+    &__emoji{
+        display: block;
+        font-size: 32px;
+        margin-bottom: 30px;
+
+        @media screen and (min-width: 768px) {
+            font-size: 64px;
+        }
+    }
+
+    &__subheader{
+        display: block;
+        font-size: var(--heading-small-size);
+        margin-bottom: 24px;
+    }
+
+    &__text{
+        font-size: var(--body-small-size);
+        text-align: center;
+        color: var(--gray);
+        line-height: var(--body-medium-line);
+        
+        @media screen and (min-width: 768px) {
+            font-size: var(--body-medium-size);
+        }
+    }
+}

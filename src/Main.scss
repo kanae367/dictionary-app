@@ -18,9 +18,26 @@
         color: var(--light-black);
         font-size: 16px;
         
+
+        &:active, &:focus{
+            outline: 1px solid var(--purple);
+        }
+
         @media screen and (min-width: 768px) {
             padding: 20px 24px;
             font-size: var(--heading-small-size);
+        }
+    }
+
+    .error-message{
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        font-size: var(--heading-small-size);
+        color: var(--red);
+        
+        & + .search-bar__input{
+            outline: 1px solid var(--red);
         }
     }
 

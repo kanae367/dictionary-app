@@ -36,44 +36,48 @@
     .select{
         transition: background-color .5s, box-shadow .5s;
     }
+
+    .not-found__subheader{
+        transition: color .5s;
+    }
 }
 
 //theme
 
 .dark-theme{
     background-color: var(--dark-black);
-
+    
     .fonts-select {
         color: white;
     }
-
+    
     .search-bar__input{
         background-color: var(--black);
         color: white;
     }
-
+    
     .result__header{
         color: white;
     }
-
+    
     .result__item-header{
         color: white;
     }
-
+    
     .meaning__list{
         color: white;
     }
-
+    
     .result__sources-link{
         color: white;
     }
-
+    
     .underline{
         &::after{
             background-color: white;
         }
     }
-
+    
     .select{
         background-color: var(--black);
         box-shadow: 0 5px 30px var(--purple);
@@ -81,5 +85,9 @@
         &__button{
             color: white;
         }
+    }
+
+    .not-found__subheader{
+        color: white;
     }
 }
