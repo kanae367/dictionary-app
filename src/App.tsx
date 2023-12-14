@@ -70,6 +70,14 @@ function App() {
 
   const items = word && word.meanings.map(item => <WordMeaning key={item.definitions[0].definition} meaning={item}/>)
   const sources = word && word.sourceUrls.map(item => <a key={item} href={item} className='result__sources-link'><span className='underline'>{item}</span><img className='result__sources-image' src={link}/></a>)
+  const audioSrc = word && word.phonetics.filter(item => item.audio && item.audio.length > 0)[0]?.audio;
+
+  const playAudio = () => {
+    if(typeof audioSrc == 'string'){
+      const audio = new Audio(String(audioSrc));
+      audio.play();
+    }
+  }
 
   return (
     <div className={`app-wrapper ${isDarkTheme && 'dark-theme'}`}>
@@ -115,7 +123,7 @@ function App() {
                       <h2 className='result__title'>{word.word}</h2>
                       <p className='result__phonetic'>{word.phonetic}</p>
                     </div>
-                    <button className='result__button'></button>
+                    <button className='result__button' type='button' onClick={playAudio}></button>
                   </div>
 
                   <div className='result__content'>
