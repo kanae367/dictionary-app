@@ -26,7 +26,7 @@ const Select = ({options, setFont, currentFont}:{
         setIsVisible(false);
     }
 
-    const buttons = options.map(item => <button type='button' className='select__button' onClick={() => handleOptionClick(item)}>{classToText[item]}</button>)
+    const buttons = options.map(item => <button type='button' className='select__button' key={item} onClick={() => handleOptionClick(item)}>{classToText[item]}</button>)
 
     return(
         <div className='fonts-select'>
