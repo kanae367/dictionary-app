@@ -29,19 +29,29 @@ const Select = ({options, setFont, currentFont}:{
     const buttons = options.map(item => <button type='button' className='select__button' key={item} onClick={() => handleOptionClick(item)}>{classToText[item]}</button>)
 
     return(
-        <div className='fonts-select'>
-            <span className='fonts-select__text' onClick={() => setIsVisible(!isVisible)}>
-                {classToText[currentFont]}
-                <img className='fonts-select__icon' src={arrow} alt="arrow icon" />
-            </span>
+        <>
+            <div className='fonts-select'>
+                <span className='fonts-select__text' onClick={() => setIsVisible(!isVisible)}>
+                    {classToText[currentFont]}
+                    <img className='fonts-select__icon' src={arrow} alt="arrow icon" />
+                </span>
+
+                {
+                    isVisible &&
+                        <div className='select'>
+                            {buttons}
+                        </div>
+                }
+            </div>
 
             {
-                isVisible &&
-                    <div className='select'>
-                        {buttons}
+                isVisible && 
+                    <div 
+                        className='select__click-catcher' 
+                        onClick={() => setIsVisible(false)}>
                     </div>
             }
-        </div>
+        </>
     )
 }
 

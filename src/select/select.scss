@@ -34,3 +34,10 @@
         }
     }
 }
+
+.select__click-catcher{
+    position: fixed;
+    inset: 0;
+    background-color: transparent;
+    z-index: 4;
+}
